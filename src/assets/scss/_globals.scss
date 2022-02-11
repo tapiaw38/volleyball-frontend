@@ -1,0 +1,88 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+img {
+    width: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 2.8rem;
+}
+
+h3 {
+    font-size: 2.3rem;
+}
+
+a,
+li {
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+p {
+    font-size: 1.4rem;
+}
+
+i {
+    font-size: 2rem;
+}
+
+
+/* buttons */
+
+@mixin button($bgColor, $color, $bgColorHover, $colorHover) {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    color: $color;
+    background-color: $bgColor;
+    transition: all 0.3s ease;
+    &:hover {
+        color: $colorHover;
+        background-color: $bgColorHover;
+    }
+}
+
+.btn-primary {
+    @include button($primary, $black, $primary-hover, $white);
+}
+
+.btn-secondary {
+    @include button($black, $white, $primary, $black);
+}
+
+/* background && color */
+
+.text-primary {
+    color: $primary;
+}
+
+.text-white {
+    color: $white;
+}
+
+.text-black {
+    color: $black;
+}
