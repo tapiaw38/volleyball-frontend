@@ -1,42 +1,63 @@
 <template>
   <header class="site-header">
-    <div class="barra">
-      <div class="content-logo">
-        <a href=""><img src="../assets/img/logo-liga.jpeg" alt="" /></a>
-        <div class="logo">
-          <i class="fas fa-volleyball-ball"></i>
-          <a href="#">LTV</a>
+    <div class="content-barra">
+      <div class="barra">
+        <div class="content-logo">
+          <router-link :to="{ name: 'home' }">
+            <img src="../assets/img/logo-liga.jpeg" alt="logo" />
+          </router-link>
+          <div>
+            <i class="fas fa-volleyball-ball"></i>
+            <p class="logo" href="#">Liga Tinogastaena de Voley</p>
+          </div>
         </div>
-      </div>
-      <nav class="site-navigation">
-        <li><a href="#">Noticias</a></li>
-        <li><a href="#">Ligas</a></li>
-        <li><a href="#">Equipos</a></li>
-        <li></li>
-      </nav>
-
-      <a @click="showNavMobile" class="menu_on">
-        <span></span>
-        <span></span>
-        <span></span>
-      </a>
-
-      <nav class="mobile-navigation">
-        <a @click="closeNavMobile" class="close">X</a>
-        <ul>
-          <li><a href="#">Noticias</a></li>
-          <li><a href="#">Ligas</a></li>
+        <nav class="site-navigation">
+          <li>
+            <router-link :to="{ name: 'news' }"> Noticias </router-link>
+          </li>
+          <li><a href="#">Campeonatos</a></li>
           <li><a href="#">Equipos</a></li>
-        </ul>
-      </nav>
+          <li></li>
+        </nav>
+
+        <a @click="showNavMobile" class="menu_on">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+
+        <nav class="mobile-navigation">
+          <a @click="closeNavMobile" class="close">X</a>
+          <ul>
+            <li>
+              <router-link :to="{ name: 'home' }"> Inicio </router-link>
+            </li>
+            <li>
+              <router-link :to="{ name: 'news' }"> Noticias </router-link>
+            </li>
+            <li><a href="#">Campeonatos</a></li>
+            <li><a href="#">Equipos</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
+    <transition>
+      <div class="content-teams" v-if="isActiveTeam">
+        <template v-for="(_, index) in 10" :key="index">
+          <a href=""><img src="../assets/img/logo-liga.jpeg" alt="" /></a>
+        </template>
+      </div>
+    </transition>
   </header>
 </template>
 
 <script>
+import { ref } from "vue";
 export default {
   name: "Header",
   setup() {
+    let isActiveTeam = ref(true);
+
     const showNavMobile = () => {
       document.querySelector(".mobile-navigation").style.left = 0;
     };
@@ -45,7 +66,20 @@ export default {
       document.querySelector(".mobile-navigation").style.left = "-100%";
     };
 
+    const onScroll = () => {
+      const scroll = window.scrollY;
+
+      if (scroll > 500) {
+        isActiveTeam.value = false;
+      } else {
+        isActiveTeam.value = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+
     return {
+      isActiveTeam,
       showNavMobile,
       closeNavMobile,
     };
@@ -57,7 +91,6 @@ export default {
 /** header **/
 
 .site-header {
-  border-bottom: 4px solid $primary;
   position: fixed;
   width: 100%;
   z-index: 4;
@@ -71,12 +104,16 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em;
   img {
     height: 2em;
     width: auto;
     margin: 0.3em;
   }
+}
+
+.content-barra {
+  width: 100%;
+  border-bottom: 3px solid $primary;
 }
 
 .barra {
@@ -85,6 +122,12 @@ export default {
   align-items: center;
   max-width: 65vw;
   margin: 0 auto;
+
+  @media (max-width: 1200px) {
+    .logo {
+      font-size: 0.9rem;
+    }
+  }
 
   @media screen and (max-width: 750px) {
     font-size: 1.2rem;
@@ -105,10 +148,13 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 0.1em;
-  background-color: $primary;
-  padding: 0.1em 0.6em;
-  border-radius: 15px;
+  background-color: $black;
+  padding: 0.2em 0.8em;
   transition: all 0.8s ease;
+  color: $white;
+  font-size: 1.2rem;
+  border-radius: 0 0 25px 0px;
+  border-left: 3px solid $primary;
 }
 
 .logo a {
@@ -122,13 +168,6 @@ export default {
 .logo i {
   transition: all 0.8s ease;
   font-size: 1.2rem;
-}
-
-.logo:hover {
-  background-color: $primary-hover;
-}
-.logo:hover a {
-  color: $white;
 }
 
 .logo:hover i {
@@ -152,6 +191,29 @@ export default {
 .site-navigation li a {
   padding: 2em 1em;
   color: $black;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* content teams */
+
+.content-teams {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  height: 50px;
+  background-color: $black;
+
+  img {
+    height: 32px;
+    width: auto;
+  }
+
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
 }
 
 /* menu mobile */
@@ -189,6 +251,7 @@ export default {
 }
 
 .mobile-navigation {
+  display: none;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -228,6 +291,10 @@ export default {
     font-family: "Courier New", Courier, monospace;
     font-size: 30px;
     font-weight: bolder;
+  }
+
+  @media screen and (max-width: 750px) {
+    display: block;
   }
 }
 </style>

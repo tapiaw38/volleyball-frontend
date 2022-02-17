@@ -46,19 +46,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.liga-1 {
-  background-color: $secondary;
-  padding: 0.3em 0.6em;
-  border-radius: 33px;
-  margin: 1em 0;
-}
-
-.liga-2 {
-  background-color: $success;
-  padding: 0.3em 0.6em;
-  border-radius: 33px;
-  margin: 1em 0;
-}
 
 .articulo-noticia {
   position: relative;

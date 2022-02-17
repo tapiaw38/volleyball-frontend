@@ -1,15 +1,17 @@
 <template>
   <main class="site-main">
     <section class="news-main">
-      <template v-for="(_, index) in 3" :key="index">
-        <card-new
-          :title="'Abramóvich revienta la Premier y LaLiga: Koundé y 2 cracks para Tuchel Premier League'"
-          :image="'https://www.paralympic.org/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/2021-05/rwanda-rio-2016-sitting-volleyball.JPG?itok=KBPLONvY'"
-          :league="'LaLiga'"
-          :author="'ElUniversal'"
-          :date="'12/05/2019'"
-        ></card-new>
-      </template>
+      <div class="news-home" v-for="(_, index) in 3" :key="index">
+        <router-link :to="{name: 'newDetail', params: {id: index} }">
+          <card-new
+            :title="'Abramóvich revienta la Premier y LaLiga: Koundé y 2 cracks para Tuchel Premier League'"
+            :image="'https://www.paralympic.org/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/2021-05/rwanda-rio-2016-sitting-volleyball.JPG?itok=KBPLONvY'"
+            :league="'LaLiga'"
+            :author="'ElUniversal'"
+            :date="'12/05/2019'"
+          ></card-new>
+        </router-link>
+      </div>
     </section>
     <div class="old-news">
       <i class="fas fa-volleyball-ball"></i>
@@ -43,37 +45,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/** main **/
-.site-main {
-  max-width: 65vw;
-  margin: 0 auto;
-  transition: all 0.3s ease-in-out;
-
-  @media (max-width: 1200px) {
-    padding-top: 60px;
-  }
-
-  @media (max-width: 768px) {
-    padding-top: 70px;
-  }
-}
 
 .news-main {
   display: grid;
   grid-template-columns: 65% 34%;
   gap: 1em;
-  padding: 6em 0;
+  padding: 4em 0;
   min-width: 220px;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 3em 0;
-  }
 
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
     padding: 2em 0;
   }
+}
+
+.news-home:first-child {
+  grid-row-start: 1;
+  grid-row-end: 3;
+
 }
 
 .news-main .articulo-noticia:nth-child(1) {
@@ -85,32 +74,6 @@ export default {
 }
 
 /** ultimas news **/
-
-.news {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1em;
-  padding: 0 0 2em 0;
-  min-width: 220px;
-
-  .articulo-noticia {
-  &:hover {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-    transition: all .4s ease-out;
-    z-index: 2;
-  }
-}
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 750px) {
-    grid-template-columns: 1fr;
-  }
-}
 
 .old-news {
   width: 100%;
