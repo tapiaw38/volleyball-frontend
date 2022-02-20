@@ -4,19 +4,20 @@
       <div class="barra">
         <div class="content-logo">
           <router-link :to="{ name: 'home' }">
-            <img src="../assets/img/logo-liga.jpeg" alt="logo" />
+            <img src="../assets/img/logo-liga.png" alt="logo" />
           </router-link>
           <div>
             <i class="fas fa-volleyball-ball"></i>
-            <p class="logo" href="#">Liga Tinogastaena de Voley</p>
+            <p class="logo" href="#">Liga Tinogasteña de Voley</p>
           </div>
         </div>
         <nav class="site-navigation">
           <li>
             <router-link :to="{ name: 'news' }"> Noticias </router-link>
           </li>
-          <li><a href="#">Campeonatos</a></li>
-          <li><a href="#">Equipos</a></li>
+          <li>
+            <router-link :to="{ name: 'championships' }"> Campeonatos </router-link>
+          </li>
           <li></li>
         </nav>
 
@@ -35,8 +36,9 @@
             <li>
               <router-link :to="{ name: 'news' }"> Noticias </router-link>
             </li>
-            <li><a href="#">Campeonatos</a></li>
-            <li><a href="#">Equipos</a></li>
+            <li>
+              <router-link :to="{ name: 'championships' }"> Campeonatos </router-link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -44,7 +46,7 @@
     <transition>
       <div class="content-teams" v-if="isActiveTeam">
         <template v-for="(_, index) in 10" :key="index">
-          <a href=""><img src="../assets/img/logo-liga.jpeg" alt="" /></a>
+          <a href=""><img src="../assets/img/logo-liga.png" alt="" /></a>
         </template>
       </div>
     </transition>
@@ -188,8 +190,12 @@ export default {
   }
 }
 
+.site-navigation li a:hover {
+  color: $primary;
+}
+
 .site-navigation li a {
-  padding: 2em 1em;
+  padding: 2em;
   color: $black;
   font-size: 1rem;
   font-weight: 500;

@@ -5,6 +5,7 @@
         <router-link :to="{ name: 'home' }">
           <img src="../../../assets/img/home.png" alt="" />
         </router-link>
+        <img src="../../../assets/img/volley.png" alt="">
         <p>Todas las noticias</p>
       </div>
       <section class="news">
@@ -36,10 +37,10 @@ export default {
 
 <style lang="scss" scoped>
 .news-list {
-  margin-top: 150px;
+  padding-top: 40px;
 
   @media (max-width: 1200px) {
-    margin-top: 150px;
+    padding-top: 30px;
   }
   @media (max-width: 750px) {
     margin-top: 100px;

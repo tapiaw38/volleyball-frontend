@@ -1,40 +1,60 @@
 <template>
-  <main class="site-main">
+  <main class="site-main container">
     <div class="new-detail">
       <div class="league">
         <router-link :to="{ name: 'home' }">
           <img src="../../../assets/img/home.png" alt="" />
         </router-link>
-        <p>La liga</p>
+        <img src="../../../assets/img/volley.png" alt="">
+        <p>{{newDetail?.league?.name}}</p>
       </div>
       <div class="container-image">
         <img
-          src="https://www.paralympic.org/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/2021-05/rwanda-rio-2016-sitting-volleyball.JPG?itok=KBPLONvY"
+          :src="newDetail?.picture"
           alt=""
         />
       </div>
-      <h2 class="new-title">Titulo de la noticia de voley</h2>
-      <p class="new-subtitle">Lorem ipsum, dolor sit amet consectetur!</p>
-      <p class="new-body">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem amet error
-        atque quibusdam dolorem, laborum esse aspernatur ducimus blanditiis quis
-        vel culpa molestiae. Quasi, reprehenderit praesentium? Vel fugit aut
-        illo!
-      </p>
+      <h2 class="new-title">{{newDetail?.title}}</h2>
+      <p class="new-subtitle">{{newDetail?.sub_title}}</p>
+      <p class="new-body">{{newDetail?.content}}</p>
     </div>
   </main>
 </template>
 
 <script>
-export default {};
+import { ref, onMounted } from "vue";
+import useNews from "../composables/useNews";
+
+export default {
+  name: "NewDetail",
+  props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+  },
+  setup(props) {
+    const { newById } = useNews();
+
+    let newDetail = ref('null');
+
+    onMounted(() => {
+      newDetail.value = newById(props.id);
+    });
+
+    return {
+      newDetail,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .new-detail {
-  margin-top: 150px;
+  padding-top: 40px;
 
   @media (max-width: 1200px) {
-    margin-top: 150px;
+    padding-top: 30px;
   }
   @media (max-width: 750px) {
     margin-top: 100px;

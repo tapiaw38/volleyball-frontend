@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // import the modules routes
 import newRouter from '../modules/news/router'
+import championshipRouter from '../modules/champinonship/router'
 
 const routes = [
   {
@@ -12,6 +13,10 @@ const routes = [
   {
     path: '/new',
     ...newRouter,
+  },
+  {
+    path: '/championship',
+    ...championshipRouter,
   },
 ]
 

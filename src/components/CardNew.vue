@@ -10,7 +10,7 @@
       </h4>
 
       <div class="noticia-autor">
-        <span>{{ author }} |</span>
+        <span>{{ author }} | </span>
         <span> {{ date }}</span>
       </div>
     </div>

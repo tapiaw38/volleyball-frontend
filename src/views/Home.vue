@@ -1,14 +1,14 @@
 <template>
   <main class="site-main">
     <section class="news-main">
-      <div class="news-home" v-for="(_, index) in 3" :key="index">
-        <router-link :to="{name: 'newDetail', params: {id: index} }">
+      <div class="news-home" v-for="notice in news.slice(0,3)" :key="notice.id">
+        <router-link :to="{name: 'newDetail', params: {id: notice.id} }">
           <card-new
-            :title="'Abramóvich revienta la Premier y LaLiga: Koundé y 2 cracks para Tuchel Premier League'"
-            :image="'https://www.paralympic.org/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/2021-05/rwanda-rio-2016-sitting-volleyball.JPG?itok=KBPLONvY'"
-            :league="'LaLiga'"
-            :author="'ElUniversal'"
-            :date="'12/05/2019'"
+            :title="notice.title"
+            :image="notice.picture"
+            :league="notice.league.name"
+            :author="'LTV'"
+            :date="notice.created"
           ></card-new>
         </router-link>
       </div>
@@ -18,28 +18,42 @@
       <h3>Ultimas Noticias</h3>
     </div>
     <section class="news">
-      <template v-for="(_, index) in 9" :key="index">
-        <card-new
-          :title="'Abramóvich revienta la Premier y LaLiga: Koundé y 2 cracks para Tuchel Premier League'"
-          :image="'https://www.paralympic.org/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/2021-05/rwanda-rio-2016-sitting-volleyball.JPG?itok=KBPLONvY'"
-          :league="'LaLiga'"
-          :author="'ElUniversal'"
-          :date="'12/05/2019'"
-        ></card-new>
+      <template v-for="notice in news.slice(4,10)" :key="notice.id">
+        <router-link :to="{name: 'newDetail', params: {id: notice.id} }">
+          <card-new
+            :title="notice.title"
+            :image="notice.picture"
+            :league="notice.league.name"
+            :author="'LTV'"
+            :date="notice.created"
+          ></card-new>
+        </router-link>
       </template>
     </section>
-    <section class="container">
-      <button class="btn-secondary btn-news">Ver mas noticas</button>
+    <section class="container-btn">
+      <router-link 
+        :to="{ name: 'news' }" 
+        class="btn-secondary btn-news"
+      >
+        Ver mas noticas
+      </router-link>
     </section>
   </main>
 </template>
 
 <script>
 import { defineAsyncComponent } from "vue";
+import useNews from "../modules/news/composables/useNews";
 export default {
   name: "Home",
   components: {
     CardNew: defineAsyncComponent(() => import("../components/CardNew.vue")),
+  },
+  setup() {
+    const { news } = useNews();
+    return {
+      news,
+    };
   },
 };
 </script>
@@ -47,11 +61,16 @@ export default {
 <style lang="scss" scoped>
 
 .news-main {
+
+  padding-top: 30px;
   display: grid;
   grid-template-columns: 65% 34%;
   gap: 1em;
-  padding: 4em 0;
   min-width: 220px;
+
+  @media (max-width: 1200px) {
+    padding-top: 30px;
+  }
 
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
@@ -89,15 +108,20 @@ export default {
   gap: 1em;
   min-width: 220px;
 
+  @media (max-width: 1200px) {
+    width: 90%;
+  }
+
   @media screen and (max-width: 750px) {
     margin: 1em 0;
+    width: 30%;
     h3 {
       font-size: 1rem;
     }
   }
 }
 
-.container {
+.container-btn {
   display: flex;
   flex-direction: row;
   align-items: center;

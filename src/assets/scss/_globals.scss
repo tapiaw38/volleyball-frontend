@@ -13,13 +13,6 @@ img {
   width: 100%;
 }
 
-body {
-  font-family: "Roboto", sans-serif;
-  background-color: #f4f4f4;
-  padding: 0;
-  margin: 0;
-}
-
 h1 {
   font-size: 3.5rem;
 }
@@ -51,15 +44,26 @@ i {
   max-width: 65vw;
   margin: 0 auto;
   transition: all 0.3s ease-in-out;
-  margin-top: 80px;
+  background-color: white;
+  padding-left: 5%;
+  padding-right:  5%;
+  padding-bottom: 5%;
+  border-radius: 14px;
+  margin-top: 180px;
 
   @media (max-width: 1200px) {
-    margin-top: 90px;
+    margin-top: 150px;
   }
 
   @media (max-width: 768px) {
     margin-top: 60px;
+    padding: 0;
+    background-color: $white;
   }
+}
+
+.container {
+  min-height: 100vh;
 }
 
 .news {
@@ -90,18 +94,35 @@ i {
 
 .league {
   display: flex;
+  margin-bottom: 1em;
+
   p {
-    font-size: 1.2rem;
-    margin-bottom: 1em;
-    background-color: $primary;
-    padding: 5px;
+    font-size: 2.2rem;
     color: $black;
-    width: 200px;
+    width: auto;
   }
   img {
-  padding-right: 15px;
-    height: 30px;
+    padding-right: 15px;
+    padding-left: 15px;
+    height: 40px;
     width: auto;
+    
+    &:nth-child(1):hover {
+      -webkit-transform: scale(1.05);
+      transform: scale(1.05);
+      transition: all 0.4s ease-out;
+      z-index: 2; 
+    }
+
+    &:nth-child(2) {
+      animation-name: rotation;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      transition: all 0.4s ease-out;
+      z-index: 2; 
+    }
+
     @media screen and (max-width: 750px) {
       display: none;
     }
@@ -171,4 +192,23 @@ i {
 
 .text-black {
   color: $black;
+}
+
+
+/* effects */
+
+.rotated{
+	animation-name: rotation;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes rotation {
+  0% {
+    transform:rotate(0deg);
+  }
+  100% {
+    transform:rotate(360deg);
+  }
 }
