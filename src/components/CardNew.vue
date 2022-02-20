@@ -11,13 +11,14 @@
 
       <div class="noticia-autor">
         <span>{{ author }} | </span>
-        <span> {{ date }}</span>
+        <span> {{ formatDate(date) }}</span>
       </div>
     </div>
   </article>
 </template>
 
 <script>
+import { formatDate } from "../helpers/formatDate";
 export default {
   name: "CardNew",
   props: {
@@ -42,6 +43,11 @@ export default {
       required: true,
     },
   },
+  setup() {
+    return {
+      formatDate,
+    };
+  }
 };
 </script>
 
