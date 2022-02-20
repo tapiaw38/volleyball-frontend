@@ -5,15 +5,19 @@
         <router-link :to="{ name: 'home' }">
           <img src="../../../assets/img/home.png" alt="" />
         </router-link>
-        <img src="../../../assets/img/volley.png" alt="">
+        <img src="../../../assets/img/volley.png" alt="" />
         <p>Ligas de Voley y Torneos</p>
       </div>
       <section class="champion">
-        <div class="card-tournament">
+        <div
+        v-for="champion in championships"
+        :key="champion.id"
+        class="card-tournament"
+        >
           <div class="tournament">
-          <img src="../../../assets/img/tournament.png" alt="">
-          <p>Torneo de la Liga</p>
-        </div>
+            <img :src="champion.picture ? champion.picture : defaultChampion" alt="" />
+            <p>{{champion.name}}</p>
+          </div>
         </div>
       </section>
     </div>
@@ -21,8 +25,17 @@
 </template>
 
 <script>
+import useChampionship from "../composables/useChampionship";
+import defaultChampion from "../../../assets/img/tournament.png";
 export default {
   name: "Championships",
+  setup() {
+    const { championships } = useChampionship();
+    return {
+      championships,
+      defaultChampion,
+    };
+  },
 };
 </script>
 
@@ -65,5 +78,4 @@ export default {
     color: $black;
   }
 }
-
 </style>

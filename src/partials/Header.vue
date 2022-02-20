@@ -45,7 +45,7 @@
     </div>
     <transition>
       <div class="content-teams" v-if="isActiveTeam">
-        <template v-for="(_, index) in 10" :key="index">
+        <template v-for="(_, index) in 0" :key="index">
           <a href=""><img src="../assets/img/logo-liga.png" alt="" /></a>
         </template>
       </div>

@@ -5,18 +5,20 @@
         <router-link :to="{ name: 'home' }">
           <img src="../../../assets/img/home.png" alt="" />
         </router-link>
-        <img src="../../../assets/img/volley.png" alt="">
+        <img src="../../../assets/img/volley.png" alt="" />
         <p>Todas las noticias</p>
       </div>
       <section class="news">
-        <template v-for="(_, index) in 9" :key="index">
-          <card-new
-            :title="'Abramóvich revienta la Premier y LaLiga: Koundé y 2 cracks para Tuchel Premier League'"
-            :image="'https://www.paralympic.org/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/2021-05/rwanda-rio-2016-sitting-volleyball.JPG?itok=KBPLONvY'"
-            :league="'LaLiga'"
-            :author="'ElUniversal'"
-            :date="'12/05/2019'"
-          ></card-new>
+        <template v-for="notice in news" :key="notice.id">
+          <router-link :to="{ name: 'newDetail', params: { id: notice.id } }">
+            <card-new
+              :title="notice.title"
+              :image="notice.picture ? notice.picture : defaultPicture"
+              :league="notice.league.name"
+              :author="'LTV'"
+              :date="notice.created"
+            ></card-new>
+          </router-link>
         </template>
       </section>
     </div>
@@ -25,12 +27,23 @@
 
 <script>
 import { defineAsyncComponent } from "vue";
+import useNews from "../composables/useNews";
+
+import defaultPicture from "../../../assets/img/default_new_picture.jpg";
+
 export default {
   name: "News",
   components: {
     CardNew: defineAsyncComponent(() =>
       import("../../../components/CardNew.vue")
     ),
+  },
+  setup() {
+    const { news } = useNews();
+    return {
+      news,
+      defaultPicture,
+    };
   },
 };
 </script>

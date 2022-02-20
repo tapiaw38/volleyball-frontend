@@ -10,7 +10,7 @@
       </div>
       <div class="container-image">
         <img
-          :src="newDetail?.picture"
+          :src="newDetail.picture ? newDetail.picture : defaultPicture"
           alt=""
         />
       </div>
@@ -24,6 +24,8 @@
 <script>
 import { ref, onMounted } from "vue";
 import useNews from "../composables/useNews";
+
+import defaultPicture from "../../../assets/img/default_new_picture.jpg";
 
 export default {
   name: "NewDetail",
@@ -44,6 +46,7 @@ export default {
 
     return {
       newDetail,
+      defaultPicture,
     };
   },
 };

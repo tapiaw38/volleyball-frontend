@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // import the modules routes
 import newRouter from '../modules/news/router'
-import championshipRouter from '../modules/champinonship/router'
+import championshipRouter from '../modules/championship/router'
 
 const routes = [
   {
