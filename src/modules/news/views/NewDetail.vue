@@ -3,10 +3,10 @@
     <div class="new-detail">
       <div class="league">
         <router-link :to="{ name: 'home' }">
-          <img src="../../../assets/img/home.png" alt="" />
+          <i class="fas fa-home"></i>
         </router-link>
-        <img src="../../../assets/img/volley.png" alt="">
-        <p>{{newDetail?.league?.name}}</p>
+       <i class="fas fa-volleyball-ball"></i>
+        <h3>{{newDetail?.league?.name}}</h3>
       </div>
       <div class="container-image">
         <img

@@ -62,11 +62,12 @@ export default {
 
 .news-main {
 
-  padding-top: 30px;
-  display: grid;
-  grid-template-columns: 65% 34%;
-  gap: 1em;
-  min-width: 220px;
+
+    display: grid;
+    grid-template-columns: 65% 34%;
+    gap: 1em;
+    padding: 4em 0;
+
 
   @media (max-width: 1200px) {
     padding-top: 30px;
@@ -82,6 +83,12 @@ export default {
   grid-row-start: 1;
   grid-row-end: 3;
 
+}
+.news-home a {
+  height: 100%;
+  article {
+    height: 100%;
+  }
 }
 
 .news-main .articulo-noticia:nth-child(1) {
