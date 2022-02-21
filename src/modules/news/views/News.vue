@@ -3,10 +3,10 @@
     <div class="news-list">
       <div class="league">
         <router-link :to="{ name: 'home' }">
-          <img src="../../../assets/img/home.png" alt="" />
+          <i class="fas fa-home"></i>
         </router-link>
-        <img src="../../../assets/img/volley.png" alt="" />
-        <p>Todas las noticias</p>
+               <i class="fas fa-volleyball-ball"></i>
+        <h3>Todas las noticias</h3>
       </div>
       <section class="news">
         <template v-for="notice in news" :key="notice.id">
