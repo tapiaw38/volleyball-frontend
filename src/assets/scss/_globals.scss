@@ -166,6 +166,35 @@ i {
   opacity: 0;
 }
 
+/* badges */
+
+@mixin badge($color, $bgColor) {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 0.7em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.5em;
+  background-color: $bgColor;
+  color: $color;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  font-weight: bold;
+  transition: all 0.4s ease-out;
+  z-index: 2;
+}
+
+.badge-success {
+  @include badge($white, $success);
+}
+
+.badge-danger {
+  @include badge($white, $danger);
+}
+
 /* buttons */
 
 @mixin button($bgColor, $color, $bgColorHover, $colorHover) {

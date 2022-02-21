@@ -17,6 +17,11 @@
           <div class="tournament">
             <img :src="champion.picture ? champion.picture : defaultChampion" alt="" />
             <p>{{champion.name}}</p>
+            <span 
+              :class="champion.is_active ? 'badge-success ': 'badge-danger'"
+            >
+              {{ champion.is_active ? 'Activo' : 'Inactivo' }}
+            </span>
           </div>
         </div>
       </section>
@@ -61,6 +66,7 @@ export default {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: left;
+  margin-bottom: 2rem;
 }
 
 .tournament {
