@@ -6,7 +6,7 @@
           <i class="fas fa-home"></i>
         </router-link>
        <i class="fas fa-volleyball-ball"></i>
-        <p>{{newDetail?.league?.name}}</p>
+        <h3>{{newDetail?.league?.name}}</h3>
       </div>
       <div class="container-image">
         <img
