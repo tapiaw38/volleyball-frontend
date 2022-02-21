@@ -7,7 +7,7 @@
             <img src="../assets/img/logo-liga.png" alt="logo" />
           </router-link>
           <div>
-            <i class="fas fa-volleyball-ball"></i>
+
             <p class="logo" href="#">Liga Tinogasteña de Voley</p>
           </div>
         </div>
@@ -103,13 +103,17 @@ export default {
 }
 
 .content-logo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+
+    padding: .2em .6em;
+    border-radius: 33px;
+        transition: all .8s ease;
   img {
     height: 2em;
     width: auto;
-    margin: 0.3em;
   }
 }
 
@@ -141,6 +145,8 @@ export default {
       position: absolute;
       right: 5%;
       top: 0;
+      bottom: 0;
+      margin: auto;
     }
   }
 }
@@ -149,32 +155,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.1em;
-  background-color: $black;
-  padding: 0.2em 0.8em;
-  transition: all 0.8s ease;
-  color: $white;
-  font-size: 1.2rem;
-  border-radius: 0 0 25px 0px;
-  border-left: 3px solid $primary;
+  gap: .5em;
+  background-color: var(--primary);
+  border-radius:33px;
+  transition: all .8s ease;
+  font-size: 1.3rem;
+  font-weight: 800; 
+
+  padding:  .6em 1em;
 }
 
 .logo a {
-  color: $black;
-  font-weight: 600;
-  padding: 0.1em 0.6em;
-  border-radius: 15px;
-  transition: all 0.8s ease;
-}
-
-.logo i {
-  transition: all 0.8s ease;
-  font-size: 1.2rem;
-}
-
-.logo:hover i {
-  transform: rotate(180deg);
-  color: $white;
+  color: var(--black);
+    font-weight: 600;
+    padding: .1em .6em;
+    border-radius: 15px;
+    transition: all .8s ease;
 }
 
 .site-navigation {
@@ -198,7 +194,7 @@ export default {
   padding: 2em;
   color: $black;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 /* content teams */
